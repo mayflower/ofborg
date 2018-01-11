@@ -20,6 +20,12 @@ pub struct Config {
     pub github: Option<GithubConfig>,
 }
 
+/// Configuration for the Security Advisory service
+#[derive(Serialize, Deserialize, Debug)]
+pub struct SecurityAdvisoryConfig {
+    pub rabbitmq: RabbitMQConfig,
+}
+
 #[derive(Serialize, Deserialize, Debug)]
 pub struct RabbitMQConfig {
     pub ssl: bool,
@@ -109,6 +115,17 @@ pub fn load(filename: &Path) -> Config {
     file.read_to_string(&mut contents).unwrap();
 
     let deserialized: Config = serde_json::from_str(&contents).unwrap();
+
+    return deserialized;
+}
+
+// TODO: struct Config -> trait, make this trait fn
+pub fn load_security_advisories(filename: &Path) -> SecurityAdvisoryConfig {
+    let mut file = File::open(filename).unwrap();
+    let mut contents = String::new();
+    file.read_to_string(&mut contents).unwrap();
+
+    let deserialized: SecurityAdvisoryConfig = serde_json::from_str(&contents).unwrap();
 
     return deserialized;
 }

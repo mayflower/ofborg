@@ -1,0 +1,8 @@
+{
+    "rabbitmq": {
+        "ssl": true,
+        "host": "events.nix.gsc.io",
+        "username": "...",
+        "password": "..."
+    }
+}

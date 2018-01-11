@@ -3,6 +3,7 @@ vendor
 *.log
 test.php
 config.json
+security-advisories.config.json
 .bash_hist
 /config*
 result
